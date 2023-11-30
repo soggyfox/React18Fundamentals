@@ -71,4 +71,16 @@
         // no specific name export (better for more flexibility)
         export default
 
-    - re
+- EsLint helps with styling and debugging
+            
+       npm run lint 
+
+
+- React Dev Tools Chrome plugin 
+
+    1: profiler, 2: Components hierarchy
+
+## Styling
+-   _document.js is considered the "index.html" for nextJS
+-   bootstrap positioning system
+    -   row
