@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "address": "12 valley",
+    "country": "Swiz",
+    "price": 9000000
+  },
+  {
+    "id": 2,
+    "address": "89 road",
+    "country": "Swiz",
+    "price": 5000000
+  }
+]

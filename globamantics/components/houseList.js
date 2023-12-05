@@ -1,23 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HouseRowMem } from "./houseRow";
 
-const houseArray = [
-  {
-    id: 1,
-    address: "12 valley",
-    country: "Swiz",
-    price: 9000000,
-  },
-  {
-    id: 2,
-    address: "89 road",
-    country: "Swiz",
-    price: 5000000,
-  },
-];
-
 const HouseList = () => {
-  const [houses, setHouses] = useState(houseArray);
+  const [houses, setHouses] = useState([]);
+
+  useEffect(() => {
+    const fetchHouses = async () => {
+      try {
+        // async operation
+        const response = await fetch("/houses.json");
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const housesData = await response.json();
+
+        // setting the state to the API call output
+        setHouses(housesData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Handle the error gracefully, e.g., show a message to the user
+      }
+    };
+
+    fetchHouses();
+  }, []);
 
   const addHouse = () => {
     setHouses([

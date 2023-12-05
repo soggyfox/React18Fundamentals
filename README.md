@@ -155,4 +155,25 @@
   - Pure functions can be cached
   - A components function should be pure (return the same JSX given input -> output)
 - We can avoid this re-render of all children using cache (React.memo)
-- 
+- React memo should only be used when it is measurably faster (else not)
+- React memo is only useful when often returning the same values (caching makes sense then) and in a pure function
+- What about impure functions?
+
+  - Side effects are unpredicatable
+  - they are unreliable
+  - examples include interacting with the api
+  - this can return data, error
+  - thus it does not have a reliable pure return output
+  - it is a side effect
+
+        // this is a hook
+        useEffect(() => {
+
+        });
+
+  - fetch is an async operation returning a promise (api)
+  - useEffect can not work with a promise and fetch is being used so we wrap the api call in an extra function
+  - useEffect can result in an infinite loop ( a re-render triggers the next re-render)
+  - Bug-Fix -- by using the public folder I was able to host the json file
+
+  ## Section on Rendering (Post bug fix)
