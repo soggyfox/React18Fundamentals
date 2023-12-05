@@ -66,21 +66,93 @@
   - we have 2 choices for export
 
         // named export (better for tree shaking)
-        export 
+        export
 
         // no specific name export (better for more flexibility)
         export default
 
 - EsLint helps with styling and debugging
-            
-       npm run lint 
 
+       npm run lint
 
-- React Dev Tools Chrome plugin 
+- React Dev Tools Chrome plugin
 
-    1: profiler, 2: Components hierarchy
+  1: profiler, 2: Components hierarchy
 
 ## Styling
--   _document.js is considered the "index.html" for nextJS
--   bootstrap positioning system
-    -   row
+
+- \_document.js is considered the "index.html" for nextJS
+- bootstrap positioning system
+
+  - row
+
+- Much like html tags. Componenents also have style attributes
+
+## Hooks, Props and State NBNBNBNB
+
+- So far we used static components, but this will change when we now receive inputs from other components
+
+![Alt text](image-1.png)
+
+- Props are readOnly !!!!
+- Prop data flow is uni-directional
+
+- Props pass arguments to components
+- Props use html like syntax
+
+- Props have children rendered in the dom
+- We can pass and use children as a prop
+
+- JSX returned from a component can only have one parent element
+- We can make an empty parent element called a "React.Fragment", now we render the child components only, without a parent node
+
+        // with the help of key react knows to only re-render newly inserted elements
+        // not re-render each house
+        <tr key={house.id}>
+
+- ... (spread operator for house)
+- currency formatter helps show pipes use case
+
+- Hooks
+
+  - General
+
+    - a function
+    - always has the use prefix
+    - Encapsulates complexity
+
+  - Rules of Hooks
+    - only be called at the top level
+    - hooks need to always be called
+    - thus always called in the same order
+    - only called in a function component
+      (except custom hook)
+
+- We use JSX , not html
+- JSX generates HTML
+  ![Alt text](image-2.png)
+
+- State is internal component data
+- Uses the State hook
+- Use state takes the init value
+- contains current value and function to change state
+
+### Prop changes
+
+- What is a prop for one component is often a "state" for another
+- there is a tree of react elements. It will only re-render the new tree elements.
+- this is called reconciliation. as we saw prior , the key map helped with this process to not rerender everything.
+  ![Alt text](image-3.png)
+
+## Component Rendering
+
+- Rendering is the running of the components function
+- Reconciliation is the react way of updating the browser after rendering took place
+- Rendering is not reconciliation
+- Currently every child of the parent (in the tree) gets re-rendered on re-render of the parent
+  - Thus we keep children low using pure functions
+  - Pure functions always returns the same output for given input
+  - Pure functions can be cached
+  - A components function should be pure (return the same JSX given input -> output)
+- We can avoid this re-render of all children using cache (React.memo)
+- 
