@@ -10,5 +10,11 @@
     "address": "89 road",
     "country": "Swiz",
     "price": 5000000
+  },
+  {
+    "id": 3,
+    "address": "89 road",
+    "country": "Swiz",
+    "price": 100000
   }
 ]

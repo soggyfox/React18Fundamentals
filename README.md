@@ -157,6 +157,7 @@
 - We can avoid this re-render of all children using cache (React.memo)
 - React memo should only be used when it is measurably faster (else not)
 - React memo is only useful when often returning the same values (caching makes sense then) and in a pure function
+- React memo only creates a shallow copy of objects!
 - What about impure functions?
 
   - Side effects are unpredicatable
@@ -177,3 +178,59 @@
   - Bug-Fix -- by using the public folder I was able to host the json file
 
   ## Section on Rendering (Post bug fix)
+
+  - Ref hooks persist values that survive re-renders without causing a re-render themselves
+  - Memo hook can be used to cache calculation results for example
+
+## Conditional Rendering
+
+- We can use conditional litterals
+
+      {house.price && (
+        <td className={`${house.price >= 500000 ? "text-primary" : ""}`}>
+          {currencyFormatter.format(house.price)}
+        </td>
+      )}
+
+- house is passed as a prop to house.js
+- If a house is selected, render a house
+- Otherwise, render a houseList
+
+      const [selectedHouse, setSelectedHouse] = useState();
+
+- We can render using a variable, if we prefer it over inline rendering
+- We should init a prop as low down as possible
+- We can pass props down to the child component and change state that way but ideally change state as low down the component hierarchy as possible to avoid unneccesary re-renders
+- Is houseList still around somewhere?
+- Mounting is the rendering of components
+- Unmounting deletes old state
+- A component can use a Wrapper to maintain control of its own state
+- UseCallback can be used to only re-render a wrapper when necessary
+- This can help with cachining and speed
+- Hooks should always have the "use" prefix in their name
+- A custom hook is a function
+- When returned custom hooks change, the component using it rerenders
+- If two components use the same custom hook, they have different states. This is called "isolation of state"
+- We can make "isolation" -> "global state" using "context"
+
+## Context and Navigation\
+
+- useContext() hook
+- when context value changes, all children(consumers) that use the context value will re-render
+- consume context in children to navigate
+- If you need to pass state using props use context
+- Can lead to many rerenders
+- Children rely on context being present
+- it is hidden state
+
+## Forms
+
+- Uncontrolled components (using ref)
+  should be avoided
+
+## Extra Section on Signals at the end
+
+All modern web-frameworks started using signals, so it is vital to understand how they work and what they do
+
+- Use Signal is better than useState!!
+- 
